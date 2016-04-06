@@ -32,16 +32,55 @@ const stock = [
 console.log(stock);
 
 const items = Backbone.View.extend({
-    initialize: function(id,itemsArray) {
+    initialize: function(id,itemsArray)  {
         this.id=id;
         this.imageUrlBack=itemsArray[id-1].imageUrlBack;
         this.imageUrlFront=itemsArray[id-1].imageUrlFront;
-        this.titel=itemsArray[id-1].titel;
+        this.title=itemsArray[id-1].title;
         this.price=itemsArray[id-1].price;
         
     },
     template: function(){
-        
+        return `<div class="container">
+                <ul class=cbp-pggrid">
+                <li>
+                    <div class="cbp-pgcontent">
+                            <span class="cbp-pgrotate"></span>
+                            <div class="cbp-pgitem">
+                                <div class="cbp-pgitem-flip">
+                                    <img  src="${this.imageUrlFront}" />
+                                    <img class = "hide" src="${this.imageUrlBack}" />
+                                </div>
+                            </div><!-- /cbp-pgitem -->
+                            <ul class="cbp-pgoptions">
+                                <li class=" cbp-pgoptcompare">Compare</li>
+                                <li class="cbp-pgoptfav">Favorite</li>
+                                <li class="cbp-pgoptsize">                              
+                                    <span data-size="XL">XL</span>
+                                    <div class="cbp-pgopttooltip">
+                                        <span data-size="XL">XL</span>
+                                        <span data-size="L">L</span>
+                                        <span data-size="M">M</span>
+                                        <span data-size="S">S</span>
+                                    </div>
+                                </li>
+                                <li class="cbp-pgoptcolor">
+                                    <span data-color="c1">Blue</span>
+                                    <div class="cbp-pgopttooltip">
+                                        <span data-color="c1">Blue</span>
+                                        <span data-color="c2">Pink</span>
+                                        <span data-color="c3">Orange</span>
+                                        <span data-color="c4">Green</span>
+                                    </div>
+                                </li>
+                                <li class="cbp-pgoptcart"></li>
+                            </ul><!-- cbp-pgoptions -->
+                        </div><!-- cbp-pgcontent -->
+                        <div class="cbp-pginfo">
+                            <h3>${this.title}</h3>
+                            <span class="cbp-pgprice">$${this.price}</span>
+                        </div>
+                    </li></ul></div>`
     },
     template1: function() {
         
@@ -91,28 +130,8 @@ const natureLover = new items(2,stock);
 const forestWalk = new items(3,stock);
 
 
-saveMyTrees.render('back');
-saveMyTrees.render('front');
 
+saveMyTrees.render();
+natureLover.render();
+forestWalk.render();
 
-
-// var googleLink = new basicView('http://google.com', 'google');
-// var tiyLink = new basicView('http://theironyard.com', 'tiy');
-
-// googleLink.render();
-// tiyLink.render();
-
-
-
-
-
-
-
-    // <nav class=" well well-sm navbar navbar-default">
-    //   <div class="container">
-
-    //     <div class="navbar-header">
-    //      <h2><span class="label label-primary"> To.Do.</span><span class="label label-info">List</span></h2>
-
-      
-    // </nav>
